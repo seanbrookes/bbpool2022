@@ -1,5 +1,5 @@
 import * as React from 'react';
-import rosters2021 from '../data/rosters2021.json';
+import rosters2022 from '../data/rosters2022.json';
 
 const PoolContext = React.createContext();
 
@@ -32,7 +32,7 @@ const poolReducer = (state, action) => {
   }
 };
 
-let rosterBlob = rosters2021;
+let rosterBlob = rosters2022;
 Object.keys(rosterBlob).map((rosterKey) => {
   rosterBlob[rosterKey].players.map((player) => {
     if (!player.roster) {

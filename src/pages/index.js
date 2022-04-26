@@ -7,7 +7,7 @@ import { PlayerMapper } from '../components/PlayerMapper';
 import { PageHeader } from '../components/PageHeader';
 import { Layout } from '../components/Layout';
 
-import rosters2021 from '../data/rosters2021.json';
+import rosters2021 from '../data/rosters2022.json';
 import { saveRosters } from '../data/saveRosters';
 
 import { usePoolContext } from '../data/PoolContextProvider';
@@ -100,9 +100,9 @@ export const sortRosterPlayers = (players) => {
 */
 // const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2021&stats=season&group=hitting&gameType=R&limit=1000&offset=0&sortStat=onBasePlusSlugging&order=desc&playerPool=ALL_CURRENT&leagueIds=103";
 
-const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2021&sportId=1&stats=season&group=hitting&gameType=R&limit=300&offset=0&sortStat=onBasePlusSlugging&order=desc";
+const battersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2022&sportId=1&stats=season&group=hitting&gameType=R&limit=300&offset=0&sortStat=onBasePlusSlugging&order=desc";
 
-const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2021&stats=season&group=pitching&gameType=R&limit=1000&offset=0&sortStat=earnedRunAverage&order=asc&playerPool=ALL_CURRENT&leagueIds=103";
+const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch_env=prod&season=2022&stats=season&group=pitching&gameType=R&limit=1000&offset=0&sortStat=earnedRunAverage&order=asc&playerPool=ALL_CURRENT&leagueIds=103";
 
 
 
@@ -119,9 +119,15 @@ function HomePage() {
 
   const { state, dispatch } = usePoolContext();
 
-  useEffect(() => {
-   // saveRosters(rosterData);
-  }, [rosterData])
+  // useEffect(() => {
+  //   console.log('|');
+  //   console.log('|  useEffect saveRosters ', rosterData);
+  //   console.log('|');
+  //   if (rosterData) {
+  //     // saveRosters(rosterData);
+
+  //   }
+  // }, [rosterData])
 
   useEffect(() => {
 
@@ -526,9 +532,9 @@ function HomePage() {
     setRosterTotals(rosterTotals);
  
  
-   }, [rosterData]);
+  //  }, [rosterData]);
 
-
+  }, []);
 
 
 
@@ -611,6 +617,7 @@ function HomePage() {
     }
     //clonedRosterData
     setRosterData(clonedRosterData);
+    saveRosters(clonedRosterData);
     
     try {
       window.localStorage.setItem(CONSTANTS.ROSTER_DATA_NAME, JSON.stringify(clonedRosterData));
@@ -674,9 +681,9 @@ function HomePage() {
 
   
 return (<Layout>
-  
+
     {isHiddenOn && <PlayerMapper rosterData={rosterData} savePlayer={onSavePlayer} mlbHitters={state?.mlbHitters?.stats} mlpPitchers={state?.mlpPitchers?.stats} />}
-      {isHiddenOn && <AddPlayerForm savePlayer={onSavePlayer} />}
+    {isHiddenOn && <AddPlayerForm savePlayer={onSavePlayer} />}
 
       <Flex>
         {

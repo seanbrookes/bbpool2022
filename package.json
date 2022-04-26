@@ -1,24 +1,24 @@
 {
-  "name": "bbpool2021",
+  "name": "bbpool2022",
   "version": "0.0.1",
   "description": "application for baseball pool 2021",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 2022",
     "build": "next build",
     "start": "next start",
     "test": "test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/seanbrookes/bbpool2021.git"
+    "url": "git+https://github.com/seanbrookes/bbpool2022.git"
   },
   "author": "Sean Brookes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/seanbrookes/bbpool2021/issues"
+    "url": "https://github.com/seanbrookes/bbpool2022/issues"
   },
-  "homepage": "https://github.com/seanbrookes/bbpool2021#readme",
+  "homepage": "https://github.com/seanbrookes/bbpool2022#readme",
   "dependencies": {
     "aws-sdk": "^2.884.0",
     "express": "^4.17.1",

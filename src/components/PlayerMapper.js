@@ -2,7 +2,7 @@ import React, {useState, useEffect}  from 'react';
 import { getPitcherStats, getHitterStats } from '../data/fetchStats';
 import styled from 'styled-components';
 import { usePoolContext } from '../data/PoolContextProvider';
-import rosters2021 from '../data/rosters2021.json';
+import rosters2021 from '../data/rosters2022.json';
 import { saveRosters } from '../data/saveRosters';
 import { CONSTANTS } from '../constants';
 
@@ -213,7 +213,8 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
 
 
   return (
-    <div>
+    <div style={{border: '1px solid #ee9999', padding: '.5rem' }}>
+      <h2>Player Mapper</h2>
       <button onClick={onLoadPlayerStats}>Load Data</button>
       <button onClick={(event) => {return setIsShowHitters(!isShowHitters)}}>hitters[{isShowHitters.toString()}]/pitchers</button>
       {((selectedSourcePitcher && selectedRosterPitcher) || (selectedSourceHitter && selectedRosterHitter) ) ? <div style={{padding: '2rem'}}><button onClick={onSaveIdMatch}>Save It</button></div> : null}
@@ -224,58 +225,68 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
       {/* stats <pre>{JSON.stringify(mlbHitters, null, 2)}</pre> */}
       <div style={{display: 'flex'}}>
         <div>
-          {isShowHitters && <div style={{display: 'flex'}}>
-            <div>
-              <div>Roster Hitters</div>
-              <MlbPlayerScrollBox>
-              {rosterHitters && rosterHitters.map((rosterHitter, index) => {
-                // if (rosterHitter.playerId) {
-                //   return (<div />);
-                // }
-                // else {
-                  return (<div>{index + 1}) {rosterHitter.roster} <button onClick={(event) => onSelectRosterHitter(event, rosterHitter)} >{rosterHitter.playerId}{rosterHitter.name}</button></div>);
-                // }
-              })}
-              </MlbPlayerScrollBox>
-
-            </div>
-            <div>
-              <div>Hitters</div>
-              <MlbPlayerScrollBox>
-                {mHitters && mHitters.map((hitter, index) => {
-                  return (<div>{index + 1}) <button onClick={(event) => onSelectSourceHitter(event, hitter)} >{hitter.playerName}[{hitter.playerId}]</button></div>)
+          {isShowHitters && <div>
+            <h2>Hitters</h2>
+            <div style={{display: 'flex'}}>
+              <div>
+                <div>Roster Hitters</div>
+                <MlbPlayerScrollBox>
+                {rosterHitters && rosterHitters.map((rosterHitter, index) => {
+                  // if (rosterHitter.playerId) {
+                  //   return (<div />);
+                  // }
+                  // else {
+                    return (<div>{index + 1}) {rosterHitter.roster} <button onClick={(event) => onSelectRosterHitter(event, rosterHitter)} >{rosterHitter.playerId}{rosterHitter.name}</button></div>);
+                  // }
                 })}
-              </MlbPlayerScrollBox>
+                </MlbPlayerScrollBox>
+
+              </div>
+              <div>
+                <div>Hitters</div>
+                <MlbPlayerScrollBox>
+                  {mHitters && mHitters.map((hitter, index) => {
+                    return (<div>{index + 1}) <button onClick={(event) => onSelectSourceHitter(event, hitter)} >{hitter.playerName}[{hitter.playerId}]</button></div>)
+                  })}
+                </MlbPlayerScrollBox>
+              </div>
             </div>
           </div>
           }
 
 
 
-
-          <div style={{display: 'flex'}}>
-            <div>
-              <div>Roster Pitchers</div>
-              <MlbPlayerScrollBox>
-                {rosterPitchers && rosterPitchers.map((rosterPitcher, index) => {
-                  // if (rosterPitcher.playerId) {
-                  //   return (<div/>);
-                  // }
-                  // else {
-                    return (<div>{index + 1}) <button onClick={(event) => onSelectRosterPitcher(event, rosterPitcher)} >{rosterPitcher.playerId}{rosterPitcher.name}</button></div>)
-                  // }
+          {!isShowHitters && <div>
+            <h2>Pitchers</h2>
+            <div style={{display: 'flex'}}>
+              <div>
+                <div>Roster Pitchers</div>
+                <MlbPlayerScrollBox>
+                  {rosterPitchers && rosterPitchers.map((rosterPitcher, index) => {
+                    // if (rosterPitcher.playerId) {
+                    //   return (<div/>);
+                    // }
+                    // else {
+                      return (<div>{index + 1}) <button onClick={(event) => onSelectRosterPitcher(event, rosterPitcher)} >{rosterPitcher.playerId}{rosterPitcher.name}</button></div>)
+                    // }
+                  })}
+                </MlbPlayerScrollBox>
+              </div>
+              <div>
+                <div>Pitchers</div>
+                <MlbPlayerScrollBox>
+                {mPitchers && mPitchers.map((pitcher, index) => {
+                  return (<div>{index + 1}) <button onClick={(event) => onSelectSourcePitcher(event, pitcher)} >{pitcher.playerName}[{pitcher.playerId}]</button></div>)
                 })}
-              </MlbPlayerScrollBox>
-            </div>
-            <div>
-              <div>Pitchers</div>
-              <MlbPlayerScrollBox>
-              {mPitchers && mPitchers.map((pitcher, index) => {
-                return (<div>{index + 1}) <button onClick={(event) => onSelectSourcePitcher(event, pitcher)} >{pitcher.playerName}[{pitcher.playerId}]</button></div>)
-              })}
-              </MlbPlayerScrollBox>
-            </div>
+                </MlbPlayerScrollBox>
+              </div>
+            </div>            
           </div>
+
+          }
+
+
+
         </div>
 
       </div>

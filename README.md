@@ -1,6 +1,8 @@
 # bbpool2021
 Annual friends baseball pool site.
 
+Note to self: use Google sheets  for the draft/protected list
+
 It hosts 4 teams with protected rosters between seasons and then facilitates a draft before the season to fill out unprotected positions in each roster.
 
 Players are mapped to player id properties from the mlb stats db.
@@ -18,10 +20,16 @@ https://bbpool2021.vercel.app/
 ![pool screenshot](https://user-images.githubusercontent.com/1751524/124396823-ce6ccb00-dcc0-11eb-81cd-e390f6bb16f0.png)
 
 
+## Developing locally
+This is a Next js application so has a built in server / api  
+The api uses the same host and port with the path `/api/...`  
+Note this is only for local development as there is no api in production as there is no persistence.  
 
-https://github.com/seanbrookes/bbpool2021
 
-https://vercel.com/seanbrookes/bbpool2021 
+
+https://github.com/seanbrookes/bbpool2022
+
+https://vercel.com/seanbrookes/bbpool2022 
 
 ```
 hiiter total calc:

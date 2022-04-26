@@ -11,7 +11,6 @@ const PlayerGroupTable = styled.table`
     font-size: 15px;
   }
 
-  display: none;
 
 
 `;
@@ -796,220 +795,222 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
       <ScoreContainer>
           <ScoreLabel>Grand Total:</ScoreLabel><ScoreValue>{grandTotal}</ScoreValue>
         </ScoreContainer>
-      <PlayerGroupTable>
-        <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>hitters</caption>
-        {hitters.map((player) => {
-          const currentHitter = player && currentRawScoreData && currentRawScoreData['hitters'] && currentRawScoreData['hitters'][player.playerId] && currentRawScoreData['hitters'][player.playerId];
-          player.total = currentHitter ? getHitterTotal(currentHitter) : 0;
-          return (
-            <tr>
-              <td>
-                {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
-              </td>
-              <td>
-                {isHiddenOn && player.mlbid}
-              </td>
-              <td style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
-                {player.name}
-              </td>
-              <td>
-              {isHiddenOn ? <select
-                  onChange={(event) => onUpdatePlayerPos(event, player)}
-                  className="select-pos pick-property-edit"
-                  value={player.pos}
-                  data-property="pos"
-                >
-                  <option value>-</option>
-                  <option value="C">C</option>
-                  <option value="1B">1B</option>
-                  <option value="2B">2B</option>
-                  <option value="3B">3B</option>
-                  <option value="SS">SS</option>
-                  <option value="LF">LF</option>
-                  <option value="CF">CF</option>
-                  <option value="RF">RF</option>
-                  <option value="DH">DH</option>
-                  <option value="SP">SP</option>
-                  <option value="RP">RP</option>
-                </select> : player.pos}
-              </td>
-              <td>
-              {isHiddenOn ? <select
-                  className="select-team pick-property-edit"
-                  onChange={(event) => onUpdatePlayerTeam(event, player)}
-                  value={player.team}
-                  data-property="team"
-                >
-                  <option value>--</option>
-                  <option value="BAL">BAL</option>
-                  <option value="BOS">BOS</option>
-                  <option value="CHA">CHA</option>
-                  <option value="CLE">CLE</option>
-                  <option value="DET">DET</option>
-                  <option value="HOU">HOU</option>
-                  <option value="KC">KC</option>
-                  <option value="LAA">LAA</option>
-                  <option value="MIN">MIN</option>
-                  <option value="NYY">NYY</option>
-                  <option value="OAK">OAK</option>
-                  <option value="SEA">SEA</option>
-                  <option value="TB">TB</option>
-                  <option value="TEX">TEX</option>
-                  <option value="TOR">TOR</option>
-                </select> : player.team}
-              </td>
-              <td>{currentHitter && currentHitter.runs}</td>
-              <td>{currentHitter && currentHitter.hits}</td>
-              <td>{currentHitter && currentHitter.homeRuns}</td>
-              <td>{currentHitter && currentHitter.rbi}</td>
-              <td>{currentHitter && currentHitter.stolenBases}</td>
-              <td>{currentHitter && getHitterTotal(currentHitter)}</td>
-            </tr>
-          )
-        })}
-      </PlayerGroupTable>
-      <PlayerGroupTable>
-        <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>starters</caption>
-        {starters.map((player) => {
-          const currentPitcher = player && currentRawScoreData && currentRawScoreData['pitchers'] && currentRawScoreData['pitchers'][player.playerId] && currentRawScoreData['pitchers'][player.playerId];
-          return (
-            <tr>
-              <td>
-                {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
-              </td>
-              <td>
-                {isHiddenOn && player.mlbid}
-              </td>
-              <td  style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
-                {player.name}
-              </td>
-              <td>
-              {isHiddenOn ? <select
-                  onChange={(event) => onUpdatePlayerPos(event, player)}
-                  className="select-pos pick-property-edit"
-                  value={player.pos}
-                  data-property="pos"
-                >
-                  <option value>-</option>
-                  <option value="C">C</option>
-                  <option value="1B">1B</option>
-                  <option value="2B">2B</option>
-                  <option value="3B">3B</option>
-                  <option value="SS">SS</option>
-                  <option value="LF">LF</option>
-                  <option value="CF">CF</option>
-                  <option value="RF">RF</option>
-                  <option value="DH">DH</option>
-                  <option value="SP">SP</option>
-                  <option value="RP">RP</option>
-                </select> : player.pos}
-              </td>
-              <td>
-              {isHiddenOn ? <select
-                  className="select-team pick-property-edit"
-                  onChange={(event) => onUpdatePlayerTeam(event, player)}
-                  value={player.team}
-                  data-property="team"
-                >
-                  <option value>--</option>
-                  <option value="BAL">BAL</option>
-                  <option value="BOS">BOS</option>
-                  <option value="CHA">CHA</option>
-                  <option value="CLE">CLE</option>
-                  <option value="DET">DET</option>
-                  <option value="HOU">HOU</option>
-                  <option value="KC">KC</option>
-                  <option value="LAA">LAA</option>
-                  <option value="MIN">MIN</option>
-                  <option value="NYY">NYY</option>
-                  <option value="OAK">OAK</option>
-                  <option value="SEA">SEA</option>
-                  <option value="TB">TB</option>
-                  <option value="TEX">TEX</option>
-                  <option value="TOR">TOR</option>
-                </select> : player.team}
-              </td>
-              <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].wins}</td>
-              <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].losses}</td>
-              <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].inningsPitched}</td>
-              <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].strikeOuts}</td>
-              <td></td>
-
-            </tr>
-          )
-        })}
-      </PlayerGroupTable>
-      <PlayerGroupTable>
-        <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>closers</caption>
-        {closers.map((player) => {
-          const currentPitcher = player && currentRawScoreData && currentRawScoreData['pitchers'] && currentRawScoreData['pitchers'][player.playerId] && currentRawScoreData['pitchers'][player.playerId];
-          return (
-            <tr>
-              <td>
-              {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
-              </td>
-              <td>
-                {isHiddenOn && player.mlbid}
-              </td>
-              <td style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
-                {player.name}
-              </td>
-              <td>
+      {isHiddenOn && <div>
+`        <PlayerGroupTable>
+          <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>hitters</caption>
+          {hitters.map((player) => {
+            const currentHitter = player && currentRawScoreData && currentRawScoreData['hitters'] && currentRawScoreData['hitters'][player.playerId] && currentRawScoreData['hitters'][player.playerId];
+            player.total = currentHitter ? getHitterTotal(currentHitter) : 0;
+            return (
+              <tr>
+                <td>
+                  {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
+                </td>
+                <td>
+                  {isHiddenOn && player.mlbid}
+                </td>
+                <td style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
+                  {player.name}
+                </td>
+                <td>
                 {isHiddenOn ? <select
-                  onChange={(event) => onUpdatePlayerPos(event, player)}
-                  className="select-pos pick-property-edit"
-                  value={player.pos}
-                  data-property="pos"
-                >
-                  <option value>-</option>
-                  <option value="C">C</option>
-                  <option value="1B">1B</option>
-                  <option value="2B">2B</option>
-                  <option value="3B">3B</option>
-                  <option value="SS">SS</option>
-                  <option value="LF">LF</option>
-                  <option value="CF">CF</option>
-                  <option value="RF">RF</option>
-                  <option value="DH">DH</option>
-                  <option value="SP">SP</option>
-                  <option value="RP">RP</option>
-                </select> : player.pos}
-              </td>
-              <td>
+                    onChange={(event) => onUpdatePlayerPos(event, player)}
+                    className="select-pos pick-property-edit"
+                    value={player.pos}
+                    data-property="pos"
+                  >
+                    <option value>-</option>
+                    <option value="C">C</option>
+                    <option value="1B">1B</option>
+                    <option value="2B">2B</option>
+                    <option value="3B">3B</option>
+                    <option value="SS">SS</option>
+                    <option value="LF">LF</option>
+                    <option value="CF">CF</option>
+                    <option value="RF">RF</option>
+                    <option value="DH">DH</option>
+                    <option value="SP">SP</option>
+                    <option value="RP">RP</option>
+                  </select> : player.pos}
+                </td>
+                <td>
                 {isHiddenOn ? <select
-                  className="select-team pick-property-edit"
-                  onChange={(event) => onUpdatePlayerTeam(event, player)}
-                  value={player.team}
-                  data-property="team"
-                >
-                  <option value>--</option>
-                  <option value="BAL">BAL</option>
-                  <option value="BOS">BOS</option>
-                  <option value="CHA">CHA</option>
-                  <option value="CLE">CLE</option>
-                  <option value="DET">DET</option>
-                  <option value="HOU">HOU</option>
-                  <option value="KC">KC</option>
-                  <option value="LAA">LAA</option>
-                  <option value="MIN">MIN</option>
-                  <option value="NYY">NYY</option>
-                  <option value="OAK">OAK</option>
-                  <option value="SEA">SEA</option>
-                  <option value="TB">TB</option>
-                  <option value="TEX">TEX</option>
-                  <option value="TOR">TOR</option>
-                </select> : player.team}
-              </td>
-              <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].wins}</td>
-              <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].losses}</td>
-              <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].saves}</td>
-              <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].inningsPitched}</td>
-              <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].strikeOuts}</td>
+                    className="select-team pick-property-edit"
+                    onChange={(event) => onUpdatePlayerTeam(event, player)}
+                    value={player.team}
+                    data-property="team"
+                  >
+                    <option value>--</option>
+                    <option value="BAL">BAL</option>
+                    <option value="BOS">BOS</option>
+                    <option value="CHA">CHA</option>
+                    <option value="CLE">CLE</option>
+                    <option value="DET">DET</option>
+                    <option value="HOU">HOU</option>
+                    <option value="KC">KC</option>
+                    <option value="LAA">LAA</option>
+                    <option value="MIN">MIN</option>
+                    <option value="NYY">NYY</option>
+                    <option value="OAK">OAK</option>
+                    <option value="SEA">SEA</option>
+                    <option value="TB">TB</option>
+                    <option value="TEX">TEX</option>
+                    <option value="TOR">TOR</option>
+                  </select> : player.team}
+                </td>
+                <td>{currentHitter && currentHitter.runs}</td>
+                <td>{currentHitter && currentHitter.hits}</td>
+                <td>{currentHitter && currentHitter.homeRuns}</td>
+                <td>{currentHitter && currentHitter.rbi}</td>
+                <td>{currentHitter && currentHitter.stolenBases}</td>
+                <td>{currentHitter && getHitterTotal(currentHitter)}</td>
+              </tr>
+            )
+          })}
+        </PlayerGroupTable>
+        <PlayerGroupTable>
+          <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>starters</caption>
+          {starters.map((player) => {
+            const currentPitcher = player && currentRawScoreData && currentRawScoreData['pitchers'] && currentRawScoreData['pitchers'][player.playerId] && currentRawScoreData['pitchers'][player.playerId];
+            return (
+              <tr>
+                <td>
+                  {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
+                </td>
+                <td>
+                  {isHiddenOn && player.mlbid}
+                </td>
+                <td  style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
+                  {player.name}
+                </td>
+                <td>
+                {isHiddenOn ? <select
+                    onChange={(event) => onUpdatePlayerPos(event, player)}
+                    className="select-pos pick-property-edit"
+                    value={player.pos}
+                    data-property="pos"
+                  >
+                    <option value>-</option>
+                    <option value="C">C</option>
+                    <option value="1B">1B</option>
+                    <option value="2B">2B</option>
+                    <option value="3B">3B</option>
+                    <option value="SS">SS</option>
+                    <option value="LF">LF</option>
+                    <option value="CF">CF</option>
+                    <option value="RF">RF</option>
+                    <option value="DH">DH</option>
+                    <option value="SP">SP</option>
+                    <option value="RP">RP</option>
+                  </select> : player.pos}
+                </td>
+                <td>
+                {isHiddenOn ? <select
+                    className="select-team pick-property-edit"
+                    onChange={(event) => onUpdatePlayerTeam(event, player)}
+                    value={player.team}
+                    data-property="team"
+                  >
+                    <option value>--</option>
+                    <option value="BAL">BAL</option>
+                    <option value="BOS">BOS</option>
+                    <option value="CHA">CHA</option>
+                    <option value="CLE">CLE</option>
+                    <option value="DET">DET</option>
+                    <option value="HOU">HOU</option>
+                    <option value="KC">KC</option>
+                    <option value="LAA">LAA</option>
+                    <option value="MIN">MIN</option>
+                    <option value="NYY">NYY</option>
+                    <option value="OAK">OAK</option>
+                    <option value="SEA">SEA</option>
+                    <option value="TB">TB</option>
+                    <option value="TEX">TEX</option>
+                    <option value="TOR">TOR</option>
+                  </select> : player.team}
+                </td>
+                <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].wins}</td>
+                <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].losses}</td>
+                <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].inningsPitched}</td>
+                <td>{currentRawScoreData && currentRawScoreData['starters'] && currentRawScoreData['starters'][player.playerId] && currentRawScoreData['starters'][player.playerId].strikeOuts}</td>
+                <td></td>
 
-            </tr>
-          )
-        })}
-      </PlayerGroupTable>
+              </tr>
+            )
+          })}
+        </PlayerGroupTable>
+        <PlayerGroupTable>
+          <caption style={{background: '#f4f4f4', color: '#444444', textAlign:'left', textTransform: 'uppercase'}}>closers</caption>
+          {closers.map((player) => {
+            const currentPitcher = player && currentRawScoreData && currentRawScoreData['pitchers'] && currentRawScoreData['pitchers'][player.playerId] && currentRawScoreData['pitchers'][player.playerId];
+            return (
+              <tr>
+                <td>
+                {isHiddenOn && <button onClick={(event) => {return onTriggerDeletePlayer(event, player)}}>X</button>}
+                </td>
+                <td>
+                  {isHiddenOn && player.mlbid}
+                </td>
+                <td style={{color: 'darkblue', whiteSpace: 'nowrap'}}>
+                  {player.name}
+                </td>
+                <td>
+                  {isHiddenOn ? <select
+                    onChange={(event) => onUpdatePlayerPos(event, player)}
+                    className="select-pos pick-property-edit"
+                    value={player.pos}
+                    data-property="pos"
+                  >
+                    <option value>-</option>
+                    <option value="C">C</option>
+                    <option value="1B">1B</option>
+                    <option value="2B">2B</option>
+                    <option value="3B">3B</option>
+                    <option value="SS">SS</option>
+                    <option value="LF">LF</option>
+                    <option value="CF">CF</option>
+                    <option value="RF">RF</option>
+                    <option value="DH">DH</option>
+                    <option value="SP">SP</option>
+                    <option value="RP">RP</option>
+                  </select> : player.pos}
+                </td>
+                <td>
+                  {isHiddenOn ? <select
+                    className="select-team pick-property-edit"
+                    onChange={(event) => onUpdatePlayerTeam(event, player)}
+                    value={player.team}
+                    data-property="team"
+                  >
+                    <option value>--</option>
+                    <option value="BAL">BAL</option>
+                    <option value="BOS">BOS</option>
+                    <option value="CHA">CHA</option>
+                    <option value="CLE">CLE</option>
+                    <option value="DET">DET</option>
+                    <option value="HOU">HOU</option>
+                    <option value="KC">KC</option>
+                    <option value="LAA">LAA</option>
+                    <option value="MIN">MIN</option>
+                    <option value="NYY">NYY</option>
+                    <option value="OAK">OAK</option>
+                    <option value="SEA">SEA</option>
+                    <option value="TB">TB</option>
+                    <option value="TEX">TEX</option>
+                    <option value="TOR">TOR</option>
+                  </select> : player.team}
+                </td>
+                <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].wins}</td>
+                <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].losses}</td>
+                <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].saves}</td>
+                <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].inningsPitched}</td>
+                <td>{currentRawScoreData && currentRawScoreData['relievers'] && currentRawScoreData['relievers'][player.playerId] && currentRawScoreData['relievers'][player.playerId].strikeOuts}</td>
+
+              </tr>
+            )
+          })}
+        </PlayerGroupTable>`
+      </div>}
       {/* Player form */}
       <div>
       {isHiddenOn && <div style={{display: 'none'}}>
