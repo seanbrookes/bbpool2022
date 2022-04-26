@@ -148,8 +148,8 @@ export const PositionGrid = ({pos}) => {
           <RegCel style={{textAlign: 'center'}}>{hitter.runs}</RegCel>
           <RegCel style={{textAlign: 'center'}}>{hitter.hits}</RegCel>
           <RegCel style={{textAlign: 'center'}}>{hitter.homeRuns}</RegCel>
-          <RegCel style={{textAlign: 'center'}}>{hitter.stolenBases}</RegCel>
           <RegCel style={{textAlign: 'center'}}>{hitter.rbi}</RegCel>
+          <RegCel style={{textAlign: 'center'}}>{hitter.stolenBases}</RegCel>
           <TotalCell>{hitter.total}</TotalCell>
         </tr>
       );  
@@ -168,8 +168,8 @@ export const PositionGrid = ({pos}) => {
             <RegCel style={{textAlign: 'center'}}>{hitter.runs}</RegCel>
             <RegCel style={{textAlign: 'center'}}>{hitter.hits}</RegCel>
             <RegCel style={{textAlign: 'center'}}>{hitter.homeRuns}</RegCel>
-            <RegCel style={{textAlign: 'center'}}>{hitter.stolenBases}</RegCel>
             <RegCel style={{textAlign: 'center'}}>{hitter.rbi}</RegCel>
+            <RegCel style={{textAlign: 'center'}}>{hitter.stolenBases}</RegCel>
             <TotalCell>{hitter.total}</TotalCell>
           </tr>
         );       
@@ -185,8 +185,8 @@ export const PositionGrid = ({pos}) => {
             <RegCel style={{textAlign: 'center'}}>{hitter.runs}</RegCel>
             <RegCel style={{textAlign: 'center'}}>{hitter.hits}</RegCel>
             <RegCel style={{textAlign: 'center'}}>{hitter.homeRuns}</RegCel>
+            <RegCel style={{textAlign: 'center'}}>{hitter.rbi}</RegCel>            
             <RegCel style={{textAlign: 'center'}}>{hitter.stolenBases}</RegCel>
-            <RegCel style={{textAlign: 'center'}}>{hitter.rbi}</RegCel>
             <TotalCell>{hitter.total}</TotalCell>
           </tr>
         ); 
