@@ -25,7 +25,11 @@ This is a Next js application so has a built in server / api
 The api uses the same host and port with the path `/api/...`  
 Note this is only for local development as there is no api in production as there is no persistence.  
 
-
+### isHiddenOn
+is the switch to turn on local editing controls in index.js
+```
+  const [isHiddenOn, setIsHiddenOn] = useState(true);
+```
 
 https://github.com/seanbrookes/bbpool2022
 
