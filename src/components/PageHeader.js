@@ -152,7 +152,7 @@ export const CONSTANTS = {
       // Pitchers
       getPitcherStats()
       .then((data) => {
-        console.log('got the pitchers data', data);
+     //   console.log('got the pitchers data', data);
         if (data && data.stats) {
           data.stats.sort((a, b) => {
             var x = a.playerName.toLowerCase();
@@ -188,7 +188,7 @@ export const CONSTANTS = {
       // Hitters
       getHitterStats()
       .then((data) => {
-        console.log('got the hitters data', data);
+       // console.log('got the hitters data', data);
         if (data && data.stats) {
           data.stats.sort((a, b) => {
             var x = a.playerName.toLowerCase();

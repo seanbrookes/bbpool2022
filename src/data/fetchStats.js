@@ -7,7 +7,7 @@ const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch
 export const getPitcherStats = async () => {
   return fetch(pitchersUrl)
     .then((response) => { 
-      console.log(`|  response data  ${JSON.stringify(response)}`)
+    //  console.log(`|  response data  ${JSON.stringify(response)}`)
       //return response
       return response.json();
     })
@@ -23,7 +23,7 @@ export const getPitcherStats = async () => {
 export const getHitterStats = async () => {
   return fetch(battersUrl)
     .then((response) => { 
-      console.log(`|  response data  ${JSON.stringify(response)}`)
+    //  console.log(`|  response data  ${JSON.stringify(response)}`)
       //return response
       return response.json();
     })

@@ -7,7 +7,7 @@ import { PlayerMapper } from '../components/PlayerMapper';
 import { PageHeader } from '../components/PageHeader';
 import { Layout } from '../components/Layout';
 
-import rosters2021 from '../data/rosters2022.json';
+import rosters2022 from '../data/rosters2022.json';
 import { saveRosters } from '../data/saveRosters';
 
 import { usePoolContext } from '../data/PoolContextProvider';
@@ -132,10 +132,10 @@ function HomePage() {
   useEffect(() => {
 
     // if (!window.localStorage.getItem(CONSTANTS.ROSTER_DATA_NAME)) {
-    //   window.localStorage.setItem(CONSTANTS.ROSTER_DATA_NAME, JSON.stringify(rosters2021));
+    //   window.localStorage.setItem(CONSTANTS.ROSTER_DATA_NAME, JSON.stringify(rosters2022));
     // }
     //let rosterBlob = JSON.parse(window.localStorage.getItem(CONSTANTS.ROSTER_DATA_NAME));
-    let rosterBlob = rosters2021;
+    let rosterBlob = rosters2022;
     Object.keys(rosterBlob).map((rosterKey) => {
       rosterBlob[rosterKey].players.map((player) => {
         if (!player.roster) {
@@ -437,11 +437,11 @@ function HomePage() {
           (rosterTotals['mashers']['grandTotal'] !== previousHistoryObj['mashers']['grandTotal']) ||
           (rosterTotals['bashers']['grandTotal'] !== previousHistoryObj['bashers']['grandTotal']) ||
           (rosterTotals['rallycaps']['grandTotal'] !== previousHistoryObj['rallycaps']['grandTotal'])) {
-            console.log('|  this is new history ');
+           // console.log('|  this is new history ');
              isNewHistory = true;
           }
           else {
-            console.log('|  this is not new history ');  
+          //  console.log('|  this is not new history ');  
           }
 
 
@@ -475,7 +475,7 @@ function HomePage() {
     
     
     
-        console.log('| grand total blob  ', theHistoryData);
+       // console.log('| grand total blob  ', theHistoryData);
 
 
 
@@ -575,10 +575,42 @@ function HomePage() {
 
 
 
+  const getNickName = (name) => {
+    if (!name) {
+      return;
+    }
+    let newName = name.trim();
+    newName = newName.replaceAll(' ', '_');
+    return newName.toLowerCase(); 
+  };
 
 
+  // give players a unique name that hopefully will bypass some of the 
+  // dependencies on mlb.playerid
+  const addNickName = () => {
+    // get the rosters, iterate over the names and if they don't have a nick name then create one
+    //  convert upper case to lower and add underscore link
+    const clonedRosterData = {...rosterData};
 
+    const a = clonedRosterData;
+    Object.keys(clonedRosterData).map((rosterKey) => {
+      clonedRosterData[rosterKey].players.map((player) => {
+        if (!player.nickname) {
+          player.nickname = getNickName(player.name);
+          return player;
+        }
+        else {
+          return player;
+        }
+      });
+    });
 
+    // console.log('|');
+    // console.log('| clonedRosterData ', clonedRosterData);
+    // console.log('|');
+
+    // saveRosters(clonedRosterData);  
+  };
 
 
   const onHiddenControlClick = (event) => {
@@ -629,7 +661,7 @@ function HomePage() {
 
   const onSavePlayer = (player) => {
 
-    console.log(`| SAVE player  ${JSON.stringify(player)}  `);
+    // console.log(`| SAVE player  ${JSON.stringify(player)}  `);
     if (player && player.roster) {
       const clonedRosterData = {...rosterData};
 
@@ -640,7 +672,7 @@ function HomePage() {
       });
 
       if (existingPlayerFilter.length === 0) {
-        console.log(`|  ADD PLAYER AND SAVE`);
+       // console.log(`|  ADD PLAYER AND SAVE`);
         targetRoster.players.push(player);
         clonedRosterData[player.roster] = targetRoster;
         setRosterData(clonedRosterData);
@@ -684,6 +716,7 @@ return (<Layout>
 
     {isHiddenOn && <PlayerMapper rosterData={rosterData} savePlayer={onSavePlayer} mlbHitters={state?.mlbHitters?.stats} mlpPitchers={state?.mlpPitchers?.stats} />}
     {isHiddenOn && <AddPlayerForm savePlayer={onSavePlayer} />}
+    {isHiddenOn&& <button onClick={addNickName}>unique-name-id</button>}
 
       <Flex>
         {

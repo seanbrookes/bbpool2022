@@ -78,7 +78,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
           // Pitchers
           getPitcherStats()
           .then((data) => {
-            console.log('got the pitchers data', data);
+          //  console.log('got the pitchers data', data);
             if (data && data.stats) {
               data.stats.sort((a, b) => {
                 var x = a.playerName.toLowerCase();
@@ -114,7 +114,7 @@ export const PlayerMapper = ({rosterData, savePlayer, refreshPlayers}) => {
           // Hitters
           getHitterStats()
           .then((data) => {
-            console.log('got the hitters data', data);
+           // console.log('got the hitters data', data);
             if (data && data.stats) {
               data.stats.sort((a, b) => {
                 var x = a.playerName.toLowerCase();
