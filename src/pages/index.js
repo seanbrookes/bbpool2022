@@ -709,9 +709,35 @@ function HomePage() {
 
   };
 
+let currentSortedRosters = [];
 
+let rosterDisplayCollection = [];
+if (rosterData) {
+  // let rosterDisplayCollection = [];
+  Object.keys(rosterData).map((rosterKey) => {
+    const currentRoster = rosterData[rosterKey];
+    rosterDisplayCollection.push({
+      roster: rosterKey,
+      total: currentRoster.total,
+    });
 
+  });
+}
+if (rosterDisplayCollection && rosterDisplayCollection.length > 0) {
+  rosterDisplayCollection = rosterDisplayCollection.sort((a, b) => {
+    if (a.total < b.total) {
+      return -1
+    }
   
+    if (a.total > b.total) {
+      return 1
+    }
+  
+    return 0
+  });
+}
+
+
 return (<Layout>
 
     {isHiddenOn && <PlayerMapper rosterData={rosterData} savePlayer={onSavePlayer} mlbHitters={state?.mlbHitters?.stats} mlpPitchers={state?.mlpPitchers?.stats} />}

@@ -107,7 +107,7 @@ export const Layout = ({children}) => {
 
 
   const posList = [
-    'All hitters',
+    'All',
     'C',
     '1B',
     '2B',
