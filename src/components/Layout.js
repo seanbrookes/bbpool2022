@@ -14,7 +14,9 @@ const PosListContainer = styled.ul`
   list-style: none;
 
   li {
-    margin: 0 0 0 1.5rem;
+    margin-left: 1rem;
+    margin-right: .5rem;
+    margin-bottom: 1.5rem;
     padding: 0;
   }
 `;

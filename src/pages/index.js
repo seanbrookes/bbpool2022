@@ -755,6 +755,17 @@ return (<Layout>
           })
         }
       </Flex>
+      <div style={{margin: '6px 0 0 0'}}>
+        <a href="https://www.mlb.com/probable-pitchers" target="_blank">Probable pitchers</a>
+      </div>
+      <div style={{margin: '6px 0 0 0'}}>
+        <a href="https://www.nbcsportsedge.com/baseball/mlb/player-news" target="_blank">Player news</a>
+      </div>
+      <div style={{margin: '6px 0 0 0'}}>
+        <a href="https://sports.yahoo.com/mlb/scoreboard/" target="_blank">Scores</a>
+      </div>
+
+      
       {isHiddenOn && <textarea rows="12" cols="90" defaultValue={JSON.stringify(rosterData)} />}
   </Layout>);
 }
