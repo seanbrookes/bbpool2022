@@ -113,7 +113,7 @@ const pitchersUrl = "https://bdfed.stitch.mlbinfra.com/bdfed/stats/player?stitch
 
 function HomePage() {
   const [rosterData, setRosterData] = useState({});
-  const [isHiddenOn, setIsHiddenOn] = useState(false);
+  const [isHiddenOn, setIsHiddenOn] = useState(false);  // toggle this for admin
 
   const [rosterTotals, setRosterTotals] = useState([]);
 
@@ -759,7 +759,7 @@ return (<Layout>
         <a href="https://www.mlb.com/probable-pitchers" target="_blank">Probable pitchers</a>
       </div>
       <div style={{margin: '6px 0 0 0'}}>
-        <a href="https://www.nbcsportsedge.com/baseball/mlb/player-news" target="_blank">Player news</a>
+        <a href="https://www.nbcsportsedge.com/baseball/mlb/player-news?team=1" target="_blank">Player news</a>
       </div>
       <div style={{margin: '6px 0 0 0'}}>
         <a href="https://sports.yahoo.com/mlb/scoreboard/" target="_blank">Scores</a>
