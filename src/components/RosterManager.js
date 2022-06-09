@@ -514,13 +514,6 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
       setCurrentRawScoreData(rawPosTypeScoreData);
       setCurrentRoster({...roster});
 
-      // const preExistingStoredPosData = window.localStorage.getItem('RAW_POS_STATS');
-      // if (preExistingStoredPosData) {
-      //   const parsedData = JSON.parse(preExistingStoredPosData);
-      //   const mergedData = {...rawPosTypeScoreData, ...parsedData};
-      //   window.localStorage.setItem('RAW_POS_STATS', JSON.stringify(mergedData));
-      // }
-      // else {
       if (rawPosTypeScoreData) {
         try {
           window.localStorage.setItem(CONSTANTS.RAW_POS_STATS, JSON.stringify(rawPosTypeScoreData)); 
@@ -530,16 +523,7 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
          }       
   
       }
-//      }
 
-
-      // const preExistingRosterStats = window.localStorage.getItem('ROSTER_STATS');
-      // if (preExistingRosterStats) {
-      //   const parsedRosterData = JSON.parse(preExistingRosterStats);
-      //   const mergedRosterData = {...positionScoreData, ...parsedRosterData};
-      //   window.localStorage.setItem('ROSTER_STATS', JSON.stringify(mergedRosterData));
-      // }
-      // else {
         if (positionScoreData) {
           try {
             window.localStorage.setItem(CONSTANTS.ROSTER_STATS, JSON.stringify(positionScoreData));  
@@ -549,7 +533,6 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
            }  
   
         }
-     // }     
 
     }
   }, [roster, mlbHitters, mlbPitchers]);
