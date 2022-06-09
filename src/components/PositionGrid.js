@@ -44,7 +44,7 @@ export const PositionGrid = ({pos}) => {
   const [isSortDesc, setIsSortDesc] = useState(true);
 
   useEffect(() => {
-    if (pos) {
+    //if (pos) {
       let rawPosStats;
       try {
         rawPosStats = window.localStorage.getItem(CONSTANTS.RAW_POS_STATS);
@@ -85,7 +85,7 @@ export const PositionGrid = ({pos}) => {
         });
         setAllClosers(thisClosers);
       } 
-    }
+ //   }
   }, [pos, currentSortCol, isSortDesc]);
 
   const onSortTable = (event, property) => {
@@ -120,7 +120,7 @@ export const PositionGrid = ({pos}) => {
     tableType = 'relievers';
     tableRows = allClosers && allClosers.map((reliever, index) => {
       return (
-        <tr>
+        <tr key={`${index}-xyx`}>
         <RegCel>{index + 1}</RegCel>
         <RegCel>{reliever.roster}</RegCel>
         <RegCel><a target="_new" href={reliever.newsLink}>{reliever.playerName}</a></RegCel>
@@ -136,10 +136,11 @@ export const PositionGrid = ({pos}) => {
       ); 
     });  
   }
-  else if (pos === 'hitters') {
+  else if (pos === 'All') {
+    tableType = 'hitters';
     tableRows = allHitters && allHitters.map((hitter, index) => {
       return (
-        <tr>
+        <tr key={`${index}-xx`}>
           <RegCel>{index + 1}</RegCel>
           <RegCel>{hitter.roster}</RegCel>
           <RegCel><a target="_new" href={hitter.newsLink}>{hitter.playerName}</a></RegCel>
@@ -159,7 +160,7 @@ export const PositionGrid = ({pos}) => {
     tableRows = allHitters && allHitters.map((hitter, index) => {
       if (pos === 'OF' && (hitter.poolPos === 'LF' || hitter.poolPos === 'RF' || hitter.poolPos === 'CF' || hitter.poolPos == 'OF')) {
         return (
-          <tr>
+          <tr key={`${index}-abx`}>
             <RegCel>{index + 1}</RegCel>
             <RegCel>{hitter.roster}</RegCel>
             <RegCel><a target="_new" href={hitter.newsLink}>{hitter.playerName}</a></RegCel>
@@ -176,7 +177,7 @@ export const PositionGrid = ({pos}) => {
       }
       else if (pos === hitter.poolPos) {
         return (
-          <tr>
+          <tr key={`${index}-ccx`}>
             <RegCel>{index + 1}</RegCel>
             <RegCel>{hitter.roster}</RegCel>
             <RegCel><a target="_new" href={hitter.newsLink}>{hitter.playerName}</a></RegCel>
@@ -277,8 +278,12 @@ export const PositionGrid = ({pos}) => {
 
       <PosTable>
         <caption>position {pos}</caption>
-        {tableHeader}
-        {tableRows}
+        <thead>
+          {tableHeader}
+        </thead>
+        <tbody>
+          {tableRows}
+        </tbody>
       </PosTable>
     </div>
   );

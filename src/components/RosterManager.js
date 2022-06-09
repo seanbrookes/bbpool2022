@@ -521,13 +521,15 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
       //   window.localStorage.setItem('RAW_POS_STATS', JSON.stringify(mergedData));
       // }
       // else {
-      
-      try {
-        window.localStorage.setItem(CONSTANTS.RAW_POS_STATS, JSON.stringify(rawPosTypeScoreData)); 
+      if (rawPosTypeScoreData) {
+        try {
+          window.localStorage.setItem(CONSTANTS.RAW_POS_STATS, JSON.stringify(rawPosTypeScoreData)); 
+        }
+         catch(error) {
+           console.error('|  can not write RAW_POS_STATS', JSON.stringify(error) );
+         }       
+  
       }
-       catch(error) {
-         console.error('|  can not write RAW_POS_STATS', JSON.stringify(error) );
-       }       
 //      }
 
 
@@ -538,13 +540,15 @@ export const RosterManager = ({mlbHitters, mlbPitchers, roster = {}, saveRosters
       //   window.localStorage.setItem('ROSTER_STATS', JSON.stringify(mergedRosterData));
       // }
       // else {
-             
-        try {
-          window.localStorage.setItem(CONSTANTS.ROSTER_STATS, JSON.stringify(positionScoreData));  
+        if (positionScoreData) {
+          try {
+            window.localStorage.setItem(CONSTANTS.ROSTER_STATS, JSON.stringify(positionScoreData));  
+          }
+           catch(error) {
+             console.error('|  can not write ROSTER_STATS', JSON.stringify(error) );
+           }  
+  
         }
-         catch(error) {
-           console.error('|  can not write ROSTER_STATS', JSON.stringify(error) );
-         }  
      // }     
 
     }
